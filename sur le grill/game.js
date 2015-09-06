@@ -1361,7 +1361,7 @@ tu_init();
  * SPRITES
  ***********************************************************************/
 function __hero() { 
-__sprite_init__(this, hero, 132, 150, 66, 75, 'Box', 66, 6, 123, 2, 150, ['img/hero_0.png']);
+__sprite_init__(this, hero, 132, 150, 66, 75, 'Box', 66, 30, 100, 2, 150, ['img/hero_0.png']);
 }; var hero = new __hero();
 
 function __hero_touche() { 
@@ -1372,9 +1372,9 @@ function __hero_fromage() {
 __sprite_init__(this, hero_fromage, 107, 150, 53, 75, 'Box', 53, 7, 103, 3, 147, ['img/hero_fromage_0.png']);
 }; var hero_fromage = new __hero_fromage();
 
-function __hero_cury() { 
-__sprite_init__(this, hero_cury, 149, 150, 74, 75, 'Box', 74, 8, 147, 5, 148, ['img/hero_cury_0.png']);
-}; var hero_cury = new __hero_cury();
+function __hero_curry() { 
+__sprite_init__(this, hero_curry, 149, 150, 74, 75, 'Box', 74, 35, 115, 5, 148, ['img/hero_curry_0.png']);
+}; var hero_curry = new __hero_curry();
 
 function __mortadelo() { 
 __sprite_init__(this, mortadelo, 200, 173, 100, 86, 'Box', 100, 0, 200, 0, 173, ['img/mortadelo_0.png']);
@@ -1393,7 +1393,7 @@ __sprite_init__(this, root, 147, 105, 0, 0, 'Box', 73, 0, 147, 0, 105, ['img/roo
 }; var root = new __root();
 
 function __spice() { 
-__sprite_init__(this, spice, 47, 68, 0, 0, 'Box', 23, 0, 47, 0, 68, ['img/spice_0.png']);
+__sprite_init__(this, spice, 47, 68, 23, 34, 'Box', 23, 0, 47, 0, 68, ['img/spice_0.png']);
 }; var spice = new __spice();
 
 function __rice() { 
@@ -1509,7 +1509,16 @@ if ( x > room_width ) x = room_width;
 }
 };
 this.on_end_step = on_end_step_i;
-this.on_collision = on_collision_i;
+this.on_collision = function() {
+with(this) {
+this.other = this.place_meeting(this.x, this.y, curry);
+if(this.other != null) {
+instance_create(x,y,curry_wurst);
+instance_destroy();
+
+}
+}
+};
 this.on_roomstart = on_roomstart_i;
 this.on_roomend = on_roomend_i;
 this.on_animationend = on_animationend_i;
@@ -1541,6 +1550,39 @@ this.on_roomend = on_roomend_i;
 this.on_animationend = on_animationend_i;
 this.on_draw = on_draw_i;
 }; var hero_simple = new __hero_simple();
+
+function __curry_wurst() {
+__instance_init__(this, curry_wurst, hero, 1, 0, hero_curry, 1, 33);
+this.on_creation = on_creation_i;
+this.on_destroy = on_destroy_i;
+this.on_step = on_step_i;
+this.on_end_step = on_end_step_i;
+this.on_collision = on_collision_i;
+this.on_roomstart = on_roomstart_i;
+this.on_roomend = on_roomend_i;
+this.on_animationend = on_animationend_i;
+this.on_draw = on_draw_i;
+}; var curry_wurst = new __curry_wurst();
+
+function __curry() {
+__instance_init__(this, curry, null, 1, 0, spice, 1, 34);
+this.on_creation = on_creation_i;
+this.on_destroy = on_destroy_i;
+this.on_step = on_step_i;
+this.on_end_step = on_end_step_i;
+this.on_collision = function() {
+with(this) {
+this.other = this.place_meeting(this.x, this.y, hero_simple);
+if(this.other != null) {
+instance_destroy();
+}
+}
+};
+this.on_roomstart = on_roomstart_i;
+this.on_roomend = on_roomend_i;
+this.on_animationend = on_animationend_i;
+this.on_draw = on_draw_i;
+}; var curry = new __curry();
 
 
 
@@ -1580,7 +1622,8 @@ this.objects = [
 [{o:obj_ground, x:920, y:380}],
 [{o:obj_ground, x:960, y:380}],
 [{o:obj_ground, x:1020, y:380}],
-[{o:obj_ground, x:1000, y:380}]];
+[{o:obj_ground, x:1000, y:380}],
+[{o:curry, x:400, y:240}]];
 this.start = function() {
 __room_start__(this, dummy_scene, 1600, 480, 30, 0, 0, 0, null, 0, 0, 0, 640, 480, hero, 100, 100);
 };
