@@ -1522,7 +1522,6 @@ with(this) {
 this.other = this.place_meeting(this.x, this.y, curry);
 if(this.other != null) {
 instance_create(x,y,curry_wurst);
-room_viewport_object = curry_wurst;
 instance_destroy();
 }
 }
