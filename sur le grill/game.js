@@ -1361,24 +1361,52 @@ tu_init();
  * SPRITES
  ***********************************************************************/
 function __hero() { 
-__sprite_init__(this, hero, 132, 150, 0, 0, 'Box', 66, 6, 123, 2, 150, ['img/hero_0.png']);
+__sprite_init__(this, hero, 132, 150, 66, 75, 'Box', 66, 6, 123, 2, 150, ['img/hero_0.png']);
 }; var hero = new __hero();
 
 function __hero_touche() { 
-__sprite_init__(this, hero_touche, 89, 150, 0, 0, 'Box', 44, 5, 84, 4, 148, ['img/hero_touche_0.png']);
+__sprite_init__(this, hero_touche, 89, 150, 44, 75, 'Box', 44, 5, 84, 4, 148, ['img/hero_touche_0.png']);
 }; var hero_touche = new __hero_touche();
 
 function __hero_fromage() { 
-__sprite_init__(this, hero_fromage, 107, 150, 0, 0, 'Box', 53, 7, 103, 3, 147, ['img/hero_fromage_0.png']);
+__sprite_init__(this, hero_fromage, 107, 150, 53, 75, 'Box', 53, 7, 103, 3, 147, ['img/hero_fromage_0.png']);
 }; var hero_fromage = new __hero_fromage();
 
 function __hero_cury() { 
-__sprite_init__(this, hero_cury, 149, 150, 0, 0, 'Box', 74, 8, 147, 5, 148, ['img/hero_cury_0.png']);
+__sprite_init__(this, hero_cury, 149, 150, 74, 75, 'Box', 74, 8, 147, 5, 148, ['img/hero_cury_0.png']);
 }; var hero_cury = new __hero_cury();
 
 function __mortadelo() { 
-__sprite_init__(this, mortadelo, 200, 173, 0, 0, 'Box', 100, 0, 200, 0, 173, ['img/mortadelo_0.png']);
+__sprite_init__(this, mortadelo, 200, 173, 100, 86, 'Box', 100, 0, 200, 0, 173, ['img/mortadelo_0.png']);
 }; var mortadelo = new __mortadelo();
+
+function __rocks() { 
+__sprite_init__(this, rocks, 111, 83, 0, 0, 'Box', 55, 0, 111, 0, 83, ['img/rocks_0.png']);
+}; var rocks = new __rocks();
+
+function __cheese() { 
+__sprite_init__(this, cheese, 59, 59, 0, 0, 'Box', 29, 0, 59, 0, 59, ['img/cheese_0.png']);
+}; var cheese = new __cheese();
+
+function __root() { 
+__sprite_init__(this, root, 147, 105, 0, 0, 'Box', 73, 0, 147, 0, 105, ['img/root_0.png']);
+}; var root = new __root();
+
+function __spice() { 
+__sprite_init__(this, spice, 47, 68, 0, 0, 'Box', 23, 0, 47, 0, 68, ['img/spice_0.png']);
+}; var spice = new __spice();
+
+function __rice() { 
+__sprite_init__(this, rice, 56, 52, 0, 0, 'Box', 28, 0, 56, 0, 52, ['img/rice_0.png']);
+}; var rice = new __rice();
+
+function __dummy_groud() { 
+__sprite_init__(this, dummy_groud, 40, 40, 0, 0, 'Box', 20, 0, 40, 0, 40, ['img/dummy_groud_0.png']);
+}; var dummy_groud = new __dummy_groud();
+
+function __sprite_82() { 
+__sprite_init__(this, sprite_82, 132, 150, 0, 0, 'Box', 66, 5, 120, 0, 150, ['img/sprite_82_0.png']);
+}; var sprite_82 = new __sprite_82();
 
 
 
@@ -1432,11 +1460,134 @@ __background_init__(this, ciel3, 'img/fond_ciel_3.png')}; var ciel3 = new __ciel
 /***********************************************************************
  * OBJECTS
  ***********************************************************************/
+function __hero() {
+__instance_init__(this, hero, null, 1, 0, null, 1, 0);
+this.on_creation = function() {
+with(this) {
+this.air = 0;
+this.jump = 0;
+}
+};
+this.on_destroy = on_destroy_i;
+this.on_step = function() {
+with(this) {
+if ( keyboard_check(vk_right) ) {
+	x += 4;
+	direction = 0;
+	if (place_meeting(x, y, obj_ground) != null ) {
+		x = xprevious;
+	}
+}
+
+if ( keyboard_check(vk_left) ) {
+	x -= 4;
+	direction = 180;
+	if (place_meeting(x, y, obj_ground) != null ) {
+		x = xprevious;
+	}
+
+}
+
+if ( keyboard_check_pressed(vk_up) && jump == 0 ) {
+	jump = 1;
+	air = 9;
+}
+
+if ( air > -5 ) air -= 0.5;
+
+y -= air;
+
+if ( place_meeting(x, y, obj_ground) != null   ) {
+	y = yprevious;
+	air = 0;
+	jump = 0;
+}
+
+
+if ( x < 0 ) x = 0;
+if ( x > room_width ) x = room_width;
+}
+};
+this.on_end_step = on_end_step_i;
+this.on_collision = on_collision_i;
+this.on_roomstart = on_roomstart_i;
+this.on_roomend = on_roomend_i;
+this.on_animationend = on_animationend_i;
+this.on_draw = on_draw_i;
+}; var hero = new __hero();
+
+function __obj_ground() {
+__instance_init__(this, obj_ground, null, 1, 0, dummy_groud, 1, 1);
+this.on_creation = on_creation_i;
+this.on_destroy = on_destroy_i;
+this.on_step = on_step_i;
+this.on_end_step = on_end_step_i;
+this.on_collision = on_collision_i;
+this.on_roomstart = on_roomstart_i;
+this.on_roomend = on_roomend_i;
+this.on_animationend = on_animationend_i;
+this.on_draw = on_draw_i;
+}; var obj_ground = new __obj_ground();
+
+function __hero_simple() {
+__instance_init__(this, hero_simple, hero, 1, 0, sprite_82, 1, 17);
+this.on_creation = on_creation_i;
+this.on_destroy = on_destroy_i;
+this.on_step = on_step_i;
+this.on_end_step = on_end_step_i;
+this.on_collision = on_collision_i;
+this.on_roomstart = on_roomstart_i;
+this.on_roomend = on_roomend_i;
+this.on_animationend = on_animationend_i;
+this.on_draw = on_draw_i;
+}; var hero_simple = new __hero_simple();
+
 
 
 /***********************************************************************
  * SCENES
  ***********************************************************************/
+function __dummy_scene() { 
+this.tiles = [
+];
+this.objects = [
+[{o:obj_ground, x:0, y:380}],
+[{o:obj_ground, x:40, y:380}],
+[{o:obj_ground, x:80, y:380}],
+[{o:obj_ground, x:120, y:380}],
+[{o:obj_ground, x:180, y:380}],
+[{o:obj_ground, x:160, y:420}],
+[{o:obj_ground, x:220, y:380}],
+[{o:obj_ground, x:260, y:380}],
+[{o:obj_ground, x:300, y:380}],
+[{o:obj_ground, x:340, y:380}],
+[{o:obj_ground, x:380, y:380}],
+[{o:obj_ground, x:420, y:380}],
+[{o:obj_ground, x:480, y:380}],
+[{o:obj_ground, x:460, y:420}],
+[{o:obj_ground, x:520, y:380}],
+[{o:hero_simple, x:60, y:180}],
+[{o:obj_ground, x:560, y:380}],
+[{o:obj_ground, x:600, y:380}],
+[{o:obj_ground, x:640, y:380}],
+[{o:obj_ground, x:680, y:380}],
+[{o:obj_ground, x:720, y:380}],
+[{o:obj_ground, x:760, y:380}],
+[{o:obj_ground, x:800, y:380}],
+[{o:obj_ground, x:840, y:380}],
+[{o:obj_ground, x:880, y:380}],
+[{o:obj_ground, x:940, y:380}],
+[{o:obj_ground, x:920, y:380}],
+[{o:obj_ground, x:960, y:380}],
+[{o:obj_ground, x:1020, y:380}],
+[{o:obj_ground, x:1000, y:380}]];
+this.start = function() {
+__room_start__(this, dummy_scene, 1600, 480, 30, 0, 0, 0, null, 0, 0, 0, 640, 480, hero, 100, 100);
+};
+}
+var dummy_scene = new __dummy_scene();
+tu_scenes.push(dummy_scene);
+tu_room_to_go = dummy_scene;
 
 
 /***********************************************************************
