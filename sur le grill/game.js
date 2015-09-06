@@ -1360,6 +1360,26 @@ tu_init();
 /***********************************************************************
  * SPRITES
  ***********************************************************************/
+function __hero() {
+__sprite_init__(this, hero, 132, 150, 0, 0, 'Box', 66, 6, 123, 2, 150, ['img/hero_0.png']);
+}; var hero = new __hero();
+
+function __hero_touché() {
+__sprite_init__(this, hero_touché, 89, 150, 0, 0, 'Box', 44, 5, 84, 4, 148, ['img/hero_touché_0.png']);
+}; var hero_touché = new __hero_touché();
+
+function __hero_fromage() {
+__sprite_init__(this, hero_fromage, 107, 150, 0, 0, 'Box', 53, 7, 103, 3, 147, ['img/hero_fromage_0.png']);
+}; var hero_fromage = new __hero_fromage();
+
+function __hero_cury() {
+__sprite_init__(this, hero_cury, 149, 150, 0, 0, 'Box', 74, 8, 147, 5, 148, ['img/hero_cury_0.png']);
+}; var hero_cury = new __hero_cury();
+
+function __mortadelo() {
+__sprite_init__(this, mortadelo, 200, 173, 0, 0, 'Box', 100, 0, 200, 0, 173, ['img/mortadelo_0.png']);
+}; var mortadelo = new __mortadelo();
+
 
 
 /***********************************************************************
