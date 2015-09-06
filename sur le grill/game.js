@@ -5,7 +5,7 @@
  * Zoltan Percsich
  * Vadim "YellowAfterlife" Dyachenko
  *
- * (c) SilentWorks 2011
+ * (c) SilentWorks 2011 - 2013
  * All rights reserved.
  * www.tululoo.com
  *
@@ -1360,23 +1360,23 @@ tu_init();
 /***********************************************************************
  * SPRITES
  ***********************************************************************/
-function __hero() {
+function __hero() { 
 __sprite_init__(this, hero, 132, 150, 0, 0, 'Box', 66, 6, 123, 2, 150, ['img/hero_0.png']);
 }; var hero = new __hero();
 
-function __hero_touche() {
+function __hero_touche() { 
 __sprite_init__(this, hero_touche, 89, 150, 0, 0, 'Box', 44, 5, 84, 4, 148, ['img/hero_touche_0.png']);
 }; var hero_touche = new __hero_touche();
 
-function __hero_fromage() {
+function __hero_fromage() { 
 __sprite_init__(this, hero_fromage, 107, 150, 0, 0, 'Box', 53, 7, 103, 3, 147, ['img/hero_fromage_0.png']);
 }; var hero_fromage = new __hero_fromage();
 
-function __hero_cury() {
+function __hero_cury() { 
 __sprite_init__(this, hero_cury, 149, 150, 0, 0, 'Box', 74, 8, 147, 5, 148, ['img/hero_cury_0.png']);
 }; var hero_cury = new __hero_cury();
 
-function __mortadelo() {
+function __mortadelo() { 
 __sprite_init__(this, mortadelo, 200, 173, 0, 0, 'Box', 100, 0, 200, 0, 173, ['img/mortadelo_0.png']);
 }; var mortadelo = new __mortadelo();
 
@@ -1395,6 +1395,33 @@ __sprite_init__(this, mortadelo, 200, 173, 0, 0, 'Box', 100, 0, 200, 0, 173, ['i
 /***********************************************************************
  * BACKGROUNDS
  ***********************************************************************/
+function __foret1() { 
+__background_init__(this, foret1, 'img/fond_foret_1.png')}; var foret1 = new __foret1();
+
+function __foret2() { 
+__background_init__(this, foret2, 'img/fond_foret_2.png')}; var foret2 = new __foret2();
+
+function __herbe1() { 
+__background_init__(this, herbe1, 'img/fond_herbe_1.png')}; var herbe1 = new __herbe1();
+
+function __herbe2() { 
+__background_init__(this, herbe2, 'img/fond_herbe_2.png')}; var herbe2 = new __herbe2();
+
+function __herbe3() { 
+__background_init__(this, herbe3, 'img/fond_herbe_3.png')}; var herbe3 = new __herbe3();
+
+function __fond() { 
+__background_init__(this, fond, 'img/fond_couleur.png')}; var fond = new __fond();
+
+function __ciel1() { 
+__background_init__(this, ciel1, 'img/fond_ciel_1.png')}; var ciel1 = new __ciel1();
+
+function __ciel2() { 
+__background_init__(this, ciel2, 'img/fond_ciel_2.png')}; var ciel2 = new __ciel2();
+
+function __ciel3() { 
+__background_init__(this, ciel3, 'img/fond_ciel_3.png')}; var ciel3 = new __ciel3();
+
 
 
 /***********************************************************************
