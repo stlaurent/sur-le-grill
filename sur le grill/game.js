@@ -5,7 +5,7 @@
  * Zoltan Percsich
  * Vadim "YellowAfterlife" Dyachenko
  *
- * (c) SilentWorks 2011 - 2013
+ * (c) SilentWorks 2011
  * All rights reserved.
  * www.tululoo.com
  *
@@ -1415,6 +1415,22 @@ __sprite_init__(this, foret2, 800, 479, 400, 239, 'Box', 400, 0, 800, 0, 479, ['
 function __foret1() { 
 __sprite_init__(this, foret1, 800, 399, 0, 0, 'Box', 400, 0, 800, 0, 399, ['img/foret1_0.png']);
 }; var foret1 = new __foret1();
+
+function __evil_fork() { 
+__sprite_init__(this, evil_fork, 101, 200, 0, 0, 'Box', 50, 0, 101, 0, 200, ['img/evil_fork_0.png']);
+}; var evil_fork = new __evil_fork();
+
+function __evil_spatule() { 
+__sprite_init__(this, evil_spatule, 78, 200, 0, 0, 'Box', 39, 0, 78, 0, 200, ['img/evil_spatule_0.png']);
+}; var evil_spatule = new __evil_spatule();
+
+function __bam() { 
+__sprite_init__(this, bam, 190, 135, 0, 0, 'Box', 95, 0, 0, 0, 0, ['img/bam_0.png']);
+}; var bam = new __bam();
+
+function __weapon_flame() { 
+__sprite_init__(this, weapon_flame, 107, 50, 0, 0, 'Box', 53, 0, 107, 0, 50, ['img/weapon_flame_0.png']);
+}; var weapon_flame = new __weapon_flame();
 
 
 
