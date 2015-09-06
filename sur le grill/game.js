@@ -1364,9 +1364,9 @@ function __hero() {
 __sprite_init__(this, hero, 132, 150, 0, 0, 'Box', 66, 6, 123, 2, 150, ['img/hero_0.png']);
 }; var hero = new __hero();
 
-function __hero_touché() {
-__sprite_init__(this, hero_touché, 89, 150, 0, 0, 'Box', 44, 5, 84, 4, 148, ['img/hero_touché_0.png']);
-}; var hero_touché = new __hero_touché();
+function __hero_touche() {
+__sprite_init__(this, hero_touche, 89, 150, 0, 0, 'Box', 44, 5, 84, 4, 148, ['img/hero_touche_0.png']);
+}; var hero_touche = new __hero_touche();
 
 function __hero_fromage() {
 __sprite_init__(this, hero_fromage, 107, 150, 0, 0, 'Box', 53, 7, 103, 3, 147, ['img/hero_fromage_0.png']);
