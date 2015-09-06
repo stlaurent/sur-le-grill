@@ -1393,7 +1393,7 @@ __sprite_init__(this, root, 147, 105, 0, 0, 'Box', 73, 0, 147, 0, 105, ['img/roo
 }; var root = new __root();
 
 function __spice() { 
-__sprite_init__(this, spice, 47, 68, 23, 34, 'Box', 23, 0, 47, 0, 68, ['img/spice_0.png']);
+__sprite_init__(this, spice, 47, 68, 30, 40, 'Circle', 23, 0, 47, 0, 68, ['img/spice_0.png']);
 }; var spice = new __spice();
 
 function __rice() { 
@@ -1405,8 +1405,16 @@ __sprite_init__(this, dummy_groud, 40, 40, 0, 0, 'Box', 20, 0, 40, 0, 40, ['img/
 }; var dummy_groud = new __dummy_groud();
 
 function __sprite_82() { 
-__sprite_init__(this, sprite_82, 132, 150, 0, 0, 'Box', 66, 5, 120, 0, 150, ['img/sprite_82_0.png']);
+__sprite_init__(this, sprite_82, 132, 150, 0, 0, 'Box', 66, 30, 100, 0, 150, ['img/sprite_82_0.png']);
 }; var sprite_82 = new __sprite_82();
+
+function __foret2() { 
+__sprite_init__(this, foret2, 800, 479, 400, 239, 'Box', 400, 0, 800, 0, 479, ['img/foret2_0.png']);
+}; var foret2 = new __foret2();
+
+function __foret1() { 
+__sprite_init__(this, foret1, 800, 399, 0, 0, 'Box', 400, 0, 800, 0, 399, ['img/foret1_0.png']);
+}; var foret1 = new __foret1();
 
 
 
@@ -1461,7 +1469,7 @@ __background_init__(this, ciel3, 'img/fond_ciel_3.png')}; var ciel3 = new __ciel
  * OBJECTS
  ***********************************************************************/
 function __hero() {
-__instance_init__(this, hero, null, 1, 0, null, 1, 0);
+__instance_init__(this, hero, null, 1, 500, null, 1, 0);
 this.on_creation = function() {
 with(this) {
 this.air = 0;
@@ -1514,8 +1522,8 @@ with(this) {
 this.other = this.place_meeting(this.x, this.y, curry);
 if(this.other != null) {
 instance_create(x,y,curry_wurst);
+room_viewport_object = curry_wurst;
 instance_destroy();
-
 }
 }
 };
@@ -1526,7 +1534,7 @@ this.on_draw = on_draw_i;
 }; var hero = new __hero();
 
 function __obj_ground() {
-__instance_init__(this, obj_ground, null, 1, 0, dummy_groud, 1, 1);
+__instance_init__(this, obj_ground, null, 1, 500, dummy_groud, 1, 1);
 this.on_creation = on_creation_i;
 this.on_destroy = on_destroy_i;
 this.on_step = on_step_i;
@@ -1539,7 +1547,7 @@ this.on_draw = on_draw_i;
 }; var obj_ground = new __obj_ground();
 
 function __hero_simple() {
-__instance_init__(this, hero_simple, hero, 1, 0, sprite_82, 1, 17);
+__instance_init__(this, hero_simple, hero, 1, 500, sprite_82, 1, 17);
 this.on_creation = on_creation_i;
 this.on_destroy = on_destroy_i;
 this.on_step = on_step_i;
@@ -1552,7 +1560,7 @@ this.on_draw = on_draw_i;
 }; var hero_simple = new __hero_simple();
 
 function __curry_wurst() {
-__instance_init__(this, curry_wurst, hero, 1, 0, hero_curry, 1, 33);
+__instance_init__(this, curry_wurst, hero, 1, 500, hero_curry, 1, 33);
 this.on_creation = on_creation_i;
 this.on_destroy = on_destroy_i;
 this.on_step = on_step_i;
@@ -1565,14 +1573,14 @@ this.on_draw = on_draw_i;
 }; var curry_wurst = new __curry_wurst();
 
 function __curry() {
-__instance_init__(this, curry, null, 1, 0, spice, 1, 34);
+__instance_init__(this, curry, null, 1, 510, spice, 1, 34);
 this.on_creation = on_creation_i;
 this.on_destroy = on_destroy_i;
 this.on_step = on_step_i;
 this.on_end_step = on_end_step_i;
 this.on_collision = function() {
 with(this) {
-this.other = this.place_meeting(this.x, this.y, hero_simple);
+this.other = this.place_meeting(this.x, this.y, hero);
 if(this.other != null) {
 instance_destroy();
 }
@@ -1584,6 +1592,41 @@ this.on_animationend = on_animationend_i;
 this.on_draw = on_draw_i;
 }; var curry = new __curry();
 
+function __parallax() {
+__instance_init__(this, parallax, null, 1, 4000, null, 0, 36);
+this.on_creation = function() {
+with(this) {
+this.parallax = 2;
+
+}
+};
+this.on_destroy = on_destroy_i;
+this.on_step = function() {
+with(this) {
+x = room_viewport_x * parallax;
+}
+};
+this.on_end_step = on_end_step_i;
+this.on_collision = on_collision_i;
+this.on_roomstart = on_roomstart_i;
+this.on_roomend = on_roomend_i;
+this.on_animationend = on_animationend_i;
+this.on_draw = on_draw_i;
+}; var parallax = new __parallax();
+
+function __object_121() {
+__instance_init__(this, object_121, parallax, 1, 500, dummy_groud, 0, 38);
+this.on_creation = on_creation_i;
+this.on_destroy = on_destroy_i;
+this.on_step = on_step_i;
+this.on_end_step = on_end_step_i;
+this.on_collision = on_collision_i;
+this.on_roomstart = on_roomstart_i;
+this.on_roomend = on_roomend_i;
+this.on_animationend = on_animationend_i;
+this.on_draw = on_draw_i;
+}; var object_121 = new __object_121();
+
 
 
 /***********************************************************************
@@ -1591,7 +1634,18 @@ this.on_draw = on_draw_i;
  ***********************************************************************/
 function __dummy_scene() { 
 this.tiles = [
-];
+[10,
+[herbe1,
+[0,0,832,128,0,380]]],
+[20,
+[herbe2,
+[0,0,832,160,0,340]]],
+[30,
+[herbe3,
+[0,0,832,192,0,300]]],
+[4000,
+[foret1,
+[64,0,736,416,0,40]]]];
 this.objects = [
 [{o:obj_ground, x:0, y:380}],
 [{o:obj_ground, x:40, y:380}],
@@ -1623,9 +1677,11 @@ this.objects = [
 [{o:obj_ground, x:960, y:380}],
 [{o:obj_ground, x:1020, y:380}],
 [{o:obj_ground, x:1000, y:380}],
-[{o:curry, x:400, y:240}]];
+[{o:curry, x:720, y:300}],
+[{o:parallax, x:400, y:180}],
+[{o:object_121, x:280, y:120}]];
 this.start = function() {
-__room_start__(this, dummy_scene, 1600, 480, 30, 0, 0, 0, null, 0, 0, 0, 640, 480, hero, 100, 100);
+__room_start__(this, dummy_scene, 1600, 480, 30, 255, 255, 255, null, 0, 0, 0, 640, 480, hero, 300, 300);
 };
 }
 var dummy_scene = new __dummy_scene();
